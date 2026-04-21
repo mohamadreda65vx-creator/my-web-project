@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>افرمها | تعلم الإنجليزية من الصفر</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- TOP HEADER -->
+<header>
+  <div class="logo" onclick="showSection('home')">
+    <div class="logo-icon">AF</div>
+    افرمها<span>للإنجليزية</span>
+  </div>
+  <!-- Top Nav Removed as requested, replaced by Bottom Nav -->
+</header>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<div class="modal-overlay" id="grammarModalOverlay" onclick="closeGrammarModal(event)">
+  <div class="modal" id="grammarModalContent"></div>
+</div>
+
+<!-- BOTTOM NAVIGATION BAR -->
+<nav class="bottom-nav">
+  <button class="bnav-item active" onclick="showSection('home'); setActiveBnav(this)">
+    <span class="si-icon">🏠</span>
+    <span>الرئيسية</span>
+  </button>
+  <button class="bnav-item" onclick="showSection('alphabet'); setActiveBnav(this)">
+    <span class="si-icon">🔤</span>
+    <span>الحروف</span>
+  </button>
+  <button class="bnav-item" onclick="showSection('grammar'); setActiveBnav(this)">
+    <span class="si-icon">📚</span>
+    <span>القواعد</span>
+  </button>
+  <button class="bnav-item" onclick="showSection('vocab'); setActiveBnav(this)">
+    <span class="si-icon">💬</span>
+    <span>الكلمات</span>
+  </button>
+  <button class="bnav-item" onclick="showSection('quiz'); setActiveBnav(this); startQuiz()">
+    <span class="si-icon">📝</span>
+    <span>اختبر نفسك</span>
+  </button>
+</nav>
+
+<!-- MAIN WRAPPER -->
+<div class="main-wrapper">
+  
+  <!-- CONTENT AREA (Now full width) -->
+  <div class="content-area">
+
+    <!-- HOME SECTION -->
+    <div class="section active" id="homeSection">
+      
+      <div class="hero fade-in">
+        <div class="hero-badge">✨ منهج متكامل وإشراف هادئ للتعلم</div>
+        <h1>افرم الإنجليزي<br>من الصفر للاحتراف</h1>
+        <p>لا مزيد من التشتت! هذا هو دليلك النهائي لتعلم الصوتيات والكلمات والقواعد في مكان واحد وبشروحات تفصيلية وكأن مدرستك معك.</p>
+      </div>
+
+      <!-- WORD OF THE DAY (Placed exactly as requested) -->
+      <div class="wotd-container fade-in" id="wordOfDay">
+         <!-- Injected via script.js -->
+      </div>
+
+      <h2 style="font-size:2.2rem;font-weight:900;margin:3rem 0 1.5rem;text-align:center;color:var(--primary);">
+        🚀 المستويات الدراسية
+      </h2>
+
+      <div class="levels-grid">
+        <div class="level-card fade-in" onclick="document.querySelectorAll('.bnav-item')[1].click()">
+          <div class="level-icon">🔤</div>
+          <div class="level-title">1. الحروف والأصوات</div>
+          <div class="level-desc">تعلم كيف تنطق كل حرف بشكل صحيح مع أمثلة.</div>
+          <button class="start-btn">ابدأ التعلم ←</button>
+        </div>
+
+        <div class="level-card fade-in" onclick="document.querySelectorAll('.bnav-item')[2].click()">
+          <div class="level-icon">📚</div>
+          <div class="level-title">2. قواعد النحو (Grammar)</div>
+          <div class="level-desc">شروحات عربية مفصلة مع خرائط ذهنية رائعة.</div>
+          <button class="start-btn">ابدأ التعلم ←</button>
+        </div>
+
+        <div class="level-card fade-in" onclick="document.querySelectorAll('.bnav-item')[3].click()">
+          <div class="level-icon">💬</div>
+          <div class="level-title">3. قاموس الكلمات الشامل</div>
+          <div class="level-desc">مئات الكلمات الأساسية التي تمثل قلب المحادثة.</div>
+          <button class="start-btn">ابدأ التعلم ←</button>
+        </div>
+
+        <div class="level-card fade-in" onclick="document.querySelectorAll('.bnav-item')[4].click()">
+          <div class="level-icon">📝</div>
+          <div class="level-title">4. التقييم الشامل</div>
+          <div class="level-desc">اختبر نفسك بـ 30 سؤال متنوع لمعرفة مستواك الفعلي.</div>
+          <button class="start-btn">بدء الاختبار 📝</button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ALPHABET SECTION -->
+    <div class="section" id="alphabetSection">
+      <div class="section-header">
+        <h2>🔤 الحروف الأبجدية — Alphabet</h2>
+        <div class="filter-btns">
+          <button class="filter-btn active" onclick="filterAlpha('all',this)">الكل</button>
+          <button class="filter-btn" onclick="filterAlpha('vowels',this)">العلة (Vowels)</button>
+          <button class="filter-btn" onclick="filterAlpha('consonants',this)">الساكنة (Consonants)</button>
+        </div>
+      </div>
+      <div class="info-banner">
+        <div class="ib-icon">📖</div>
+        <div class="ib-text">تعلم أصوات الحروف. اضغط على الكارت وقوم بالاستماع لنطق الحرف بشكل هادئ وسليم جداً.</div>
+      </div>
+      <div class="alphabet-grid" id="alphabetGrid"></div>
+    </div>
+
+
+    <!-- GRAMMAR SECTION -->
+    <div class="section" id="grammarSection">
+      <div class="section-header">
+        <h2>📚 القواعد — Grammar</h2>
+        <div class="filter-btns">
+          <button class="filter-btn active" onclick="filterGrammar('all',this)">الكل</button>
+          <button class="filter-btn" onclick="filterGrammar('basic',this)">الأساسيات</button>
+          <button class="filter-btn" onclick="filterGrammar('tenses',this)">في الأزمنة</button>
+        </div>
+      </div>
+      <div class="info-banner">
+        <div class="ib-icon">💡</div>
+        <div class="ib-text">هنا الشرح الكامل والمفصل لكل القواعد مع كمية أمثلة توضيحية هائلة وخرائط ذهنية. استخدم زر "شرح" داخل كل قاعدة.</div>
+      </div>
+      <div class="grammar-grid" id="grammarGrid"></div>
+    </div>
+
+
+    <!-- VOCAB & SENTENCES SECTION (Merged in UI for Vocab) -->
+    <div class="section" id="vocabSection">
+      <div class="section-header">
+        <h2>💬 القاموس — Top Vocabulary</h2>
+      </div>
+      <div class="info-banner">
+        <div class="ib-icon">🎯</div>
+        <div class="ib-text">قاعدة بيانات ضخمة بالمئات من أكثر الكلمات المستخدمة، مقسمة حسب النوع (أفعال، صفات، أماكن). لا تنسَ الاستماع.</div>
+      </div>
+      
+      <div class="vocab-controls">
+        <input type="text" class="search-input" id="vocabSearch" placeholder="🔍 ابحث عن أي كلمة..." oninput="filterVocab()">
+        <select class="cat-select" id="vocabCat" onchange="filterVocab()">
+          <option value="all">جميع الفئات</option>
+          <option value="action">أفعال (Verbs)</option>
+          <option value="desc">صفات (Adjectives)</option>
+          <option value="place">أماكن (Places)</option>
+          <option value="item">أشياء يومية (Items)</option>
+        </select>
+      </div>
+
+      <div class="vocab-cards-grid" id="vocabGrid"></div>
+    </div>
+
+
+    <!-- QUIZ SECTION -->
+    <div class="section" id="quizSection">
+      <div class="section-header">
+        <h2>📝 اختبر نفسك — Test Yourself</h2>
+      </div>
+      <div class="info-banner">
+        <div class="ib-icon">🏆</div>
+        <div class="ib-text">30 سؤال متدرج الصعوبة، اختبر مخرجات ما تعلمته اليوم من قواعد وكلمات.</div>
+      </div>
+
+      <div class="quiz-container">
+        <div class="quiz-progress-bar-wrap">
+          <div class="quiz-progress-bar" id="quizProgress" style="width: 0%"></div>
+        </div>
+        <div class="quiz-status">
+          <span>السؤال <span id="qCurrent">1</span> من <span id="qTotal">30</span></span>
+          <span class="quiz-score">النقاط: <span id="quizScoreVal">0</span></span>
+        </div>
+
+        <div class="quiz-card" id="quizCard">
+          <div class="quiz-question" id="quizQuestion">Loading...</div>
+          <div class="quiz-options" id="quizOptions"></div>
+        </div>
+
+        <div id="quizResult" class="section" style="text-align:center;">
+          <h3 style="font-size:3rem; margin-bottom:1rem;">🏆 اكتمل الاختبار!</h3>
+          <div id="finalScoreVal" style="font-size:2rem; font-weight:800; color:var(--primary); margin-bottom:2rem;"></div>
+          <button class="start-btn" onclick="startQuiz()" style="max-width:300px; margin:0 auto;">إعادة الاختبار 🔄</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /content-area -->
+</div><!-- /main-wrapper -->
+
+<script src="script.js"></script>
+</body>
+</html>
