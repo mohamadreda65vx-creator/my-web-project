@@ -45,9 +45,17 @@
     <span class="si-icon">💬</span>
     <span>الكلمات</span>
   </button>
+  <button class="bnav-item" onclick="showSection('stories'); setActiveBnav(this)">
+    <span class="si-icon">📖</span>
+    <span>قصص</span>
+  </button>
   <button class="bnav-item" onclick="showSection('quiz'); setActiveBnav(this); startQuiz()">
     <span class="si-icon">📝</span>
-    <span>اختبر نفسك</span>
+    <span>التقييم</span>
+  </button>
+  <button class="bnav-item" onclick="showSection('kidsQuiz'); setActiveBnav(this); showKidsLevels()">
+    <span class="si-icon">🧸</span>
+    <span>ألعاب</span>
   </button>
 </nav>
 
@@ -98,10 +106,24 @@
         </div>
 
         <div class="level-card fade-in" onclick="document.querySelectorAll('.bnav-item')[4].click()">
+          <div class="level-icon">📖</div>
+          <div class="level-title">4. قصص ومحادثات</div>
+          <div class="level-desc">طور مهارة القراءة والاستماع عبر قصص قصيرة مع الترجمة.</div>
+          <button class="start-btn">ابدأ القراءة ←</button>
+        </div>
+
+        <div class="level-card fade-in" onclick="document.querySelectorAll('.bnav-item')[5].click()">
           <div class="level-icon">📝</div>
-          <div class="level-title">4. التقييم الشامل</div>
+          <div class="level-title">5. التقييم الشامل</div>
           <div class="level-desc">اختبر نفسك بـ 30 سؤال متنوع لمعرفة مستواك الفعلي.</div>
           <button class="start-btn">بدء الاختبار 📝</button>
+        </div>
+
+        <div class="level-card fade-in" onclick="showSection('kidsQuiz'); setActiveBnav(document.querySelectorAll('.bnav-item')[6]); showKidsLevels()">
+          <div class="level-icon">🧸</div>
+          <div class="level-title">6. ألعاب الأطفال</div>
+          <div class="level-desc">100 اختبار تفاعلي لتنمية مهارات الأطفال بالصور.</div>
+          <button class="start-btn">بدء اللعب 🧸</button>
         </div>
       </div>
     </div>
@@ -157,10 +179,20 @@
         <input type="text" class="search-input" id="vocabSearch" placeholder="🔍 ابحث عن أي كلمة..." oninput="filterVocab()">
         <select class="cat-select" id="vocabCat" onchange="filterVocab()">
           <option value="all">جميع الفئات</option>
+          <option value="animal">حيوانات (Animals)</option>
+          <option value="bird">طيور (Birds)</option>
+          <option value="plant">نباتات (Plants)</option>
+          <option value="food">طعام (Food)</option>
+          <option value="body">أجزاء الجسم (Body)</option>
+          <option value="job">وظائف (Jobs)</option>
+          <option value="color">ألوان (Colors)</option>
+          <option value="clothes">ملابس (Clothes)</option>
           <option value="action">أفعال (Verbs)</option>
           <option value="desc">صفات (Adjectives)</option>
           <option value="place">أماكن (Places)</option>
-          <option value="item">أشياء يومية (Items)</option>
+          <option value="item">أشياء (Items)</option>
+          <option value="basic">أساسيات (Basics)</option>
+          <option value="time">زمن (Time)</option>
         </select>
       </div>
 
@@ -196,6 +228,60 @@
           <h3 style="font-size:3rem; margin-bottom:1rem;">🏆 اكتمل الاختبار!</h3>
           <div id="finalScoreVal" style="font-size:2rem; font-weight:800; color:var(--primary); margin-bottom:2rem;"></div>
           <button class="start-btn" onclick="startQuiz()" style="max-width:300px; margin:0 auto;">إعادة الاختبار 🔄</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STORIES SECTION -->
+    <div class="section" id="storiesSection">
+      <div class="section-header">
+        <h2>📖 قصص ومحادثات — Stories</h2>
+      </div>
+      <div class="info-banner">
+        <div class="ib-icon">🗣️</div>
+        <div class="ib-text">طور مهارة الاستماع والقراءة من خلال قصص ومحادثات تفاعلية. اضغط على أي قصة واستمع بتركيز!</div>
+      </div>
+      <div class="stories-grid" id="storiesGrid"></div>
+    </div>
+
+    <!-- KIDS QUIZ SECTION -->
+    <div class="section" id="kidsQuizSection">
+      <div class="section-header">
+        <h2>🧸 ألعاب الأطفال — Kids Games</h2>
+      </div>
+      <div class="info-banner">
+        <div class="ib-icon">🎨</div>
+        <div class="ib-text">100 تحدي تفاعلي مقسمة إلى 5 مستويات لتعليم الأطفال بطريقة متدرجة وممتعة.</div>
+      </div>
+
+      <!-- Level Selection -->
+      <div id="kidsLevelSelect" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <button class="start-btn" onclick="startKidsQuiz(0)" style="background: #FF5252;">المستوى 1 🍭</button>
+        <button class="start-btn" onclick="startKidsQuiz(1)" style="background: #FF4081;">المستوى 2 🎈</button>
+        <button class="start-btn" onclick="startKidsQuiz(2)" style="background: #E040FB;">المستوى 3 🍦</button>
+        <button class="start-btn" onclick="startKidsQuiz(3)" style="background: #7C4DFF;">المستوى 4 🚀</button>
+        <button class="start-btn" onclick="startKidsQuiz(4)" style="background: #536DFE;">المستوى 5 👑</button>
+      </div>
+
+      <div class="quiz-container" id="kidsQuizGame" style="background: #fffdf5; border: 4px dashed #ffb300; display:none;">
+        <div class="quiz-progress-bar-wrap" style="background: #ffe082;">
+          <div class="quiz-progress-bar" id="kidsQuizProgress" style="background: #ffb300; width: 0%"></div>
+        </div>
+        <div class="quiz-status" style="color: #d84315;">
+          <span>اللغز <span id="kqCurrent">1</span> من <span id="kqTotal">20</span></span>
+          <span class="quiz-score" style="background:#ffcc80; color:#bf360c;">النقاط: <span id="kidsQuizScoreVal">0</span></span>
+        </div>
+
+        <div class="quiz-card" id="kidsQuizCard">
+          <div class="quiz-question" id="kidsQuizQuestion" style="text-align:center; font-size:2rem; color:#d84315;">Loading...</div>
+          <div id="kidsQuizImage" style="text-align:center; margin-bottom: 2rem;"></div>
+          <div class="quiz-options kids-options" id="kidsQuizOptions"></div>
+        </div>
+
+        <div id="kidsQuizResult" class="section" style="text-align:center;">
+          <h3 style="font-size:3rem; margin-bottom:1rem; color:#d84315;">🎉 أنت بطل حقيقي!</h3>
+          <div id="kidsFinalScoreVal" style="font-size:2rem; font-weight:800; color:#2E7D32; margin-bottom:2rem;"></div>
+          <button class="start-btn" onclick="showKidsLevels()" style="max-width:300px; margin:0 auto; background:linear-gradient(135deg, #ff9800, #f57c00);">العودة للمستويات 🏠</button>
         </div>
       </div>
     </div>
